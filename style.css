@@ -30,6 +30,13 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
 .card {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;

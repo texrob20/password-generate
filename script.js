@@ -8,10 +8,14 @@ function generatePassword() {
   var passwordLength = document.getElementById("passwordLength").value;
   var genPassword = "";
   console.log(passwordLength);
-  if (passwordLength === ""){
-    window.alert('Please select a password length');
+  if (passwordLength === "" || passwordLength <= 8){
+    window.alert('Please select a password length greater than 8 characters');
+    chars = "";
+  }  else if (passwordLength >= 128) {
+    window.alert('Please select a password length less than 128 characters');
+    chars = "";
   }
-  for (var i = 0; i <= passwordLength; i++) {
+  for (var i = 0; i < passwordLength; i++) {
     var randomNumber = Math.floor(Math.random() * chars.length);
     genPassword += chars.substring(randomNumber, randomNumber +1);
   }
@@ -49,6 +53,7 @@ function generateChars() {
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+var copyBtn = document.querySelector("#copyText");
 
 // Write password to the #password input
 function writePassword() {
@@ -59,5 +64,13 @@ function writePassword() {
 
 }
 
+function copyText() {
+  var copyText = document.querySelector("#password");
+  copyText.select();
+  navigator.clipboard.writeText(copyText.value);
+  window.alert('Text copied');
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+copyBtn.addEventListener("click", copyText);
