@@ -1,34 +1,50 @@
 // character types included by default
-var lowercase = true;
-var upercase = true;
-var numeric = true;
-var special = true;
+var chars = "";
 
 // generating the password after user input regarding character types and length
 function generatePassword() {
-  var chars = generateChars();
-  var passwordLength = generateLength();
+  chars = generateChars();
+  console.log(chars);
+  var passwordLength = document.getElementById("passwordLength").value;
   var genPassword = "";
+  console.log(passwordLength);
+  if (passwordLength === ""){
+    window.alert('Please select a password length');
+  }
   for (var i = 0; i <= passwordLength; i++) {
     var randomNumber = Math.floor(Math.random() * chars.length);
     genPassword += chars.substring(randomNumber, randomNumber +1);
   }
+  console.log(genPassword);
+  return genPassword;
   document.getElementById("password").value = genPassword;
 }
 
 function generateChars() {
-  if (lowercase === true) {
+  var chars = "";
+  console.log(chars);
+  var lowercase = document.getElementById('lowercase');
+  var uppercase = document.getElementById('uppercase');
+  var numeric = document.getElementById('numeric');
+  var special = document.getElementById('special');
+  if (lowercase.checked === false && uppercase.checked === false 
+    && numeric.checked === false && special.checked === false){
+      window.alert('Please select at least one type');
+    }
+  if (lowercase.checked === true) {
     chars = chars + "abcdefghijklmnopqrstuvwxyz"; }
-  if (uppercase === true) {
+  if (uppercase.checked === true) {
     chars = chars + "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; }
-  if (numeric === true) {
+  if (numeric.checked === true) {
     chars = chars + "0123456789"; }
-  if (special === true) {
+  if (special.checked === true) {
     chars = chars + "!@#$%^&*()"; }
-}
-
-function generateLength() {
-
+  console.log (lowercase.checked);
+  console.log (uppercase.checked);
+  console.log (numeric.checked);
+  console.log (special.checked);
+  console.log (passwordLength.value);
+  return chars;
 }
 
 // Get references to the #generate element
@@ -42,19 +58,6 @@ function writePassword() {
   passwordText.value = password;
 
 }
-function passwordParameters(){
-  var lowercaseSelect = window.prompt('Would you like to include lowercase letters? Yes or No');
-  if (lowercaseSelect === "Yes" || lowercaseSelect === "yes" || lowercaseSelect === "YES") {
-    lowercase = true; }
-  else if (lowercaseSelect === "No" || lowercaseSelect === "no" || lowercaseSelect === "NO") {
-    lowercase = false; }
-  else {window}
 
-  var uppercaseSelect = window.prompt('Would you like to include lowercase letters? Yes or No');
-  if (uppercaseSelect === "Yes" || uppercaseSelect === "yes" || uppercaseSelect === "YES"){
-    uppercase = true; }
-  else { uppercase = false;
-  }
-}
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
