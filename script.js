@@ -59,9 +59,12 @@ var copyBtn = document.querySelector("#copyText");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
+  document.getElementById("lowercase").checked = false;
+  document.getElementById("uppercase").checked = false;
+  document.getElementById("numeric").checked = false;
+  document.getElementById("special").checked = false;
+  document.getElementById("passwordLength").value = null;
 }
 
 function copyText() {
