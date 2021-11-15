@@ -24,6 +24,7 @@ function generatePassword() {
   document.getElementById("password").value = genPassword;
 }
 
+// generating the character string used to generate the password
 function generateChars() {
   var chars = "";
   console.log(chars);
@@ -53,9 +54,10 @@ function generateChars() {
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+// Get references to the #copy element
 var copyBtn = document.querySelector("#copyText");
 
-// Write password to the #password input
+// Write password to the #password input and reset all parameters
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -67,6 +69,7 @@ function writePassword() {
   document.getElementById("passwordLength").value = null;
 }
 
+// Write password to user clipboard for use in other apps
 function copyText() {
   var copyText = document.querySelector("#password");
   copyText.select();
@@ -76,4 +79,5 @@ function copyText() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+// Add event listener to copy button
 copyBtn.addEventListener("click", copyText);
